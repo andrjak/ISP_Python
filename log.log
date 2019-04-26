@@ -1,0 +1,23 @@
+mainProgram.py[LINE:11]# INFO     [2019-04-20 09:00:42,192]  This is an info message
+mainProgram.py[LINE:12]# WARNING  [2019-04-20 09:00:42,192]  This is a warning
+mainProgram.py[LINE:13]# ERROR    [2019-04-20 09:00:42,192]  This is an error message
+mainProgram.py[LINE:14]# CRITICAL [2019-04-20 09:00:42,192]  FATAL!!!
+mainProgram.py[LINE:60]# ERROR    [2019-04-20 09:01:05,647]  Неправильный ввод!
+Traceback (most recent call last):
+  File "C:/Users/andre/PycharmProjects/ISP/mainProgram.py", line 55, in worker_control
+    birthday = list(map(int, input("Введите день рождения в формате (2017.4.18):").split(".")))
+ValueError: invalid literal for int() with base 10: 'gdgfdhfhd'
+mainProgram.py[LINE:80]# ERROR    [2019-04-20 09:02:13,715]  Неправильный ввод!
+Traceback (most recent call last):
+  File "C:/Users/andre/PycharmProjects/ISP/mainProgram.py", line 77, in worker_control
+    num = int(input("\nВведите номер работника:"))
+ValueError: invalid literal for int() with base 10: 'павпв'
+mainProgram.py[LINE:11]# INFO     [2019-04-20 09:09:40,951]  This is an info message
+mainProgram.py[LINE:12]# WARNING  [2019-04-20 09:09:40,951]  This is a warning
+mainProgram.py[LINE:13]# ERROR    [2019-04-20 09:09:40,951]  This is an error message
+mainProgram.py[LINE:14]# CRITICAL [2019-04-20 09:09:40,951]  FATAL!!!
+mainProgram.py[LINE:60]# ERROR    [2019-04-20 09:09:56,387]  Неправильный ввод!
+Traceback (most recent call last):
+  File "C:/Users/andre/PycharmProjects/ISP/mainProgram.py", line 55, in worker_control
+    birthday = list(map(int, input("Введите день рождения в формате (2017.4.18):").split(".")))
+ValueError: invalid literal for int() with base 10: "sdfghjkl;';lkjhgf"
