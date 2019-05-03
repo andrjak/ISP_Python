@@ -1,5 +1,6 @@
 import company
 import transport
+import viewController
 import worker
 import order
 import datetime
@@ -183,4 +184,4 @@ def view_info(this_company: company.Company) -> None:
 
 
 if __name__ == "__main__":
-    main()
+    viewController.main([1, 2, 3], [1, 2, 3], [1, 2, 3])

@@ -26,3 +26,39 @@ mainProgram.py[LINE:11]# INFO     [2019-04-27 23:53:50,469]  This is an info mes
 mainProgram.py[LINE:12]# WARNING  [2019-04-27 23:53:50,469]  This is a warning
 mainProgram.py[LINE:13]# ERROR    [2019-04-27 23:53:50,469]  This is an error message
 mainProgram.py[LINE:14]# CRITICAL [2019-04-27 23:53:50,469]  FATAL!!!
+mainProgram.py[LINE:12]# INFO     [2019-05-03 14:15:47,944]  This is an info message
+mainProgram.py[LINE:13]# WARNING  [2019-05-03 14:15:47,949]  This is a warning
+mainProgram.py[LINE:14]# ERROR    [2019-05-03 14:15:47,949]  This is an error message
+mainProgram.py[LINE:15]# CRITICAL [2019-05-03 14:15:47,949]  FATAL!!!
+mainProgram.py[LINE:12]# INFO     [2019-05-03 14:25:25,221]  This is an info message
+mainProgram.py[LINE:13]# WARNING  [2019-05-03 14:25:25,221]  This is a warning
+mainProgram.py[LINE:14]# ERROR    [2019-05-03 14:25:25,221]  This is an error message
+mainProgram.py[LINE:15]# CRITICAL [2019-05-03 14:25:25,221]  FATAL!!!
+mainProgram.py[LINE:12]# INFO     [2019-05-03 14:30:01,201]  This is an info message
+mainProgram.py[LINE:13]# WARNING  [2019-05-03 14:30:01,201]  This is a warning
+mainProgram.py[LINE:14]# ERROR    [2019-05-03 14:30:01,201]  This is an error message
+mainProgram.py[LINE:15]# CRITICAL [2019-05-03 14:30:01,201]  FATAL!!!
+mainProgram.py[LINE:12]# INFO     [2019-05-03 14:37:08,435]  This is an info message
+mainProgram.py[LINE:13]# WARNING  [2019-05-03 14:37:08,435]  This is a warning
+mainProgram.py[LINE:14]# ERROR    [2019-05-03 14:37:08,435]  This is an error message
+mainProgram.py[LINE:15]# CRITICAL [2019-05-03 14:37:08,435]  FATAL!!!
+mainProgram.py[LINE:12]# INFO     [2019-05-03 14:44:20,171]  This is an info message
+mainProgram.py[LINE:13]# WARNING  [2019-05-03 14:44:20,171]  This is a warning
+mainProgram.py[LINE:14]# ERROR    [2019-05-03 14:44:20,171]  This is an error message
+mainProgram.py[LINE:15]# CRITICAL [2019-05-03 14:44:20,171]  FATAL!!!
+mainProgram.py[LINE:12]# INFO     [2019-05-03 14:45:20,119]  This is an info message
+mainProgram.py[LINE:13]# WARNING  [2019-05-03 14:45:20,119]  This is a warning
+mainProgram.py[LINE:14]# ERROR    [2019-05-03 14:45:20,119]  This is an error message
+mainProgram.py[LINE:15]# CRITICAL [2019-05-03 14:45:20,119]  FATAL!!!
+mainProgram.py[LINE:12]# INFO     [2019-05-03 14:47:27,960]  This is an info message
+mainProgram.py[LINE:13]# WARNING  [2019-05-03 14:47:27,960]  This is a warning
+mainProgram.py[LINE:14]# ERROR    [2019-05-03 14:47:27,960]  This is an error message
+mainProgram.py[LINE:15]# CRITICAL [2019-05-03 14:47:27,960]  FATAL!!!
+mainProgram.py[LINE:12]# INFO     [2019-05-03 14:47:43,001]  This is an info message
+mainProgram.py[LINE:13]# WARNING  [2019-05-03 14:47:43,001]  This is a warning
+mainProgram.py[LINE:14]# ERROR    [2019-05-03 14:47:43,001]  This is an error message
+mainProgram.py[LINE:15]# CRITICAL [2019-05-03 14:47:43,001]  FATAL!!!
+mainProgram.py[LINE:12]# INFO     [2019-05-03 14:56:45,577]  This is an info message
+mainProgram.py[LINE:13]# WARNING  [2019-05-03 14:56:45,577]  This is a warning
+mainProgram.py[LINE:14]# ERROR    [2019-05-03 14:56:45,577]  This is an error message
+mainProgram.py[LINE:15]# CRITICAL [2019-05-03 14:56:45,577]  FATAL!!!
