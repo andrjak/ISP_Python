@@ -5,7 +5,7 @@ class Worker:
     __doc__ = "Класс описывающий работника предприятия"
 
     def __init__(self, name, position, birthday,
-                 salary, experience: datetime.date = datetime.date(1, 1, 1),
+                 salary, experience: int,
                  duration=8, date=datetime.date.today()):
         self.name = name  # Фамилия Имя Отчество
         self.position = position  # Должность
@@ -22,7 +22,7 @@ class Worker:
             self.name, self.position, self.salary, self.experience, self.birthday)
 
     def get_experience_bonus(self) -> float:
-        return self.experience.year * 0.02 * self.salary
+        return self.experience * 0.02 * self.salary
 
     def get_salary(self, flag=False):  # flag - переместить указатель зарплаты на текущий день
         time = (datetime.date.today() - self.previous_payday).days
@@ -45,5 +45,5 @@ class Worker:
 
 if __name__ == "__main__":
     x = Worker("Валетко Андрей Николаевич", "Директор", datetime.date(2000, 4, 21),
-               1000, datetime.date(2, 1, 1), 8, datetime.date(2018, 2, 1))
+               1000, 2, 8, datetime.date(2018, 2, 1))
     print(x)

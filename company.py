@@ -13,6 +13,13 @@ class Company:
         self.partnerList = []
         self.positionDict = {}  # Должности
 
+    def start_init(self, transportList, workerList, orderList, partnerList, positionDict):
+        self.transportList = transportList
+        self.workerList = workerList
+        self.orderList = orderList
+        self.partnerList = partnerList
+        self.positionDict = positionDict
+
     def add_new_worker(self, this_worker: worker.Worker):  # Добавить окошко с возможностью
         if this_worker.position in self.positionDict:
             if self.positionDict[this_worker.position] > 1:

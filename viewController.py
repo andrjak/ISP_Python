@@ -1,13 +1,17 @@
+import datetime
+
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMessageBox, QDesktopWidget
 from PyQt5.QtCore import QCoreApplication
-
+from PyQt5 import QtWidgets
 
 from View import mainPage
 from View import orderPage
 from View import transportPage
 from View import workerPage
-from PyQt5 import QtWidgets
+from View import newWorker
+
+import company
 import worker
 import order
 import transport
@@ -15,7 +19,7 @@ import sys
 
 
 class MainController(QtWidgets.QMainWindow, mainPage.Ui_MainWindow):
-    def __init__(self, worker_list, order_list, transport_list):
+    def __init__(self, worker_list, order_list, transport_list, position_dict):
         super().__init__()
         self.worker_list = worker_list
         self.order_list = order_list
@@ -34,8 +38,8 @@ class MainController(QtWidgets.QMainWindow, mainPage.Ui_MainWindow):
         self.pushButton.clicked.connect(self.worker_open)
         self.pushButton_2.clicked.connect(self.order_open)
         self.pushButton_3.clicked.connect(self.transport_open)
-        #self.pushButton_4.clicked.connect(self)
-        #self.pushButton_5.clicked.connect(self)
+        # self.pushButton_4.clicked.connect(self)
+        # self.pushButton_5.clicked.connect(self)
         self.pushButton_6.clicked.connect(QCoreApplication.instance().quit)
         # self.showFullScreen()
 
@@ -68,31 +72,95 @@ class WorkerController(QtWidgets.QMainWindow, workerPage.Ui_MainWindow):
         self.setupUi(self)
         self.worker_list = worker_list
         self.options()
-        # worker_list = range(100)
-        for i in worker_list:
-            self.listWidget.addItem(str(i))
+        self.window = None
+        self.flag = True
 
     def options(self):
+        self.pushButton.clicked.connect(self.add_worker)
         self.pushButton_2.clicked.connect(self.del_worker)
-        # self.showFullScreen()
-
-    def add_worker(self):
-        pass
-
-    def del_worker(self):
-        list_items = self.listWidget.selectedItems()
-        if not list_items:
-            return
-        for item in list_items:
-            index = self.listWidget.row(item)
-            self.listWidget.takeItem(index)
-            self.worker_list.remove(self.worker_list[index])
-
-    def sort(self):
-        self.listWidget.clear()
-        self.worker_list.sort(key=lambda this_worker: this_worker.name)
+        #self.pushButton_3
+        #self.pushButton_4
+        #self.pushButton_5
+        #self.pushButton_6
+        self.pushButton_7.clicked.connect(self.view_worker)
+        self.pushButton_8.clicked.connect(self.search)
+        self.pushButton_9.clicked.connect(self.sort)
+        self.pushButton_10.clicked.connect(self.birthday_sort)
         for i in self.worker_list:
             self.listWidget.addItem(str(i))
+
+    def add_worker(self):
+        if self.flag:
+            self.window = NewWorkerController(self, self.worker_list)
+            self.window.show()
+
+    def del_worker(self):
+        if self.flag:
+            list_items = self.listWidget.selectedItems()
+            if not list_items:
+                return
+            for item in list_items:
+                index = self.listWidget.row(item)
+                self.listWidget.takeItem(index)
+                self.worker_list.remove(self.worker_list[index])
+
+    def view_worker(self):
+        if not self.flag:
+            self.flag = True
+            self.listWidget.clear()
+            for i in self.worker_list:
+                self.listWidget.addItem(str(i))
+
+    def change_position(self):
+        if not self.flag:
+            pass
+
+    def view_position(self):
+        if self.flag:
+            self.flag = False
+
+    def add_position(self):
+        if not self.flag:
+            pass
+
+    def del_position(self):
+        if not self.flag:
+            pass
+
+    def search(self):
+        if self.flag:
+            item = None
+            item = self.lineEdit
+            if item is not None:
+                self.listWidget.clear()
+                for i in self.worker_list:
+                    if item in i.name:
+                        self.listWidget.addItem(str(i))
+
+    def sort(self):
+        if self.flag:
+            self.listWidget.clear()
+            if self.comboBox.currentText() == "Сортировать по имени":
+                self.worker_list.sort(key=lambda this_worker: this_worker.name)
+            elif self.comboBox.currentText() == "Сортировать по дате рождения":
+                self.worker_list.sort(key=lambda this_worker: this_worker.birthday)
+            else:
+                self.worker_list.sort(key=lambda this_worker: this_worker.salary)
+            for i in self.worker_list:
+                self.listWidget.addItem(str(i))
+
+    def birthday_sort(self):
+        self.listWidget.clear()
+        for i in self.worker_list:
+            if i.birthday.month == datetime.date.today().month:
+                self.listWidget.addItem(str(i))
+
+    def closeEvent(self, event):
+        reply = QMessageBox.question(self, "Сообщение", "Вы уверены?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            event.accept()
+        else:
+            event.ignore()
 
 
 class TransportController(QtWidgets.QMainWindow, transportPage.Ui_MainWindow):
@@ -101,20 +169,75 @@ class TransportController(QtWidgets.QMainWindow, transportPage.Ui_MainWindow):
         self.setupUi(self)
         self.transport_list = transport_list
 
+    def closeEvent(self, event):
+        reply = QMessageBox.question(self, "Сообщение", "Вы уверены?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            event.accept()
+        else:
+            event.ignore()
+
 
 class OrderController(QtWidgets.QMainWindow, orderPage.Ui_MainWindow):
     def __init__(self, parent=None, order_list: list = None):
         super(OrderController, self).__init__(parent)
         self.setupUi(self)
-        self.transport_list = order_list
+        self.order_list = order_list
+
+    def closeEvent(self, event):
+        reply = QMessageBox.question(self, "Сообщение", "Вы уверены?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            event.accept()
+        else:
+            event.ignore()
 
 
-def main(worker_list, order_list, transport_list):
+class NewWorkerController(QtWidgets.QMainWindow, newWorker.Ui_MainWindow):
+    def __init__(self, parent=None, worker_list: list = None):
+        super(NewWorkerController, self).__init__(parent)
+        self.setupUi(self)
+        self.parent = parent
+        self.worker_list = worker_list
+        self.pushButton.clicked.connect(self.save_new_worker)
+
+    def save_new_worker(self):
+        name = self.lineEdit.text()
+        position = self.lineEdit_2.text()
+        date = self.lineEdit_3.text()
+        duration = self.lineEdit_4.text()
+        salary = self.lineEdit_5.text()
+        experience = self.lineEdit_6.text()
+        birthday = self.lineEdit_7.text()
+
+        try:
+            birthday = datetime.datetime.strptime(birthday, "%d.%m.%Y")
+            salary = int(salary)
+            experience = int(experience)
+            duration = int(duration)
+            date = datetime.datetime.strptime(date, "%d.%m.%Y")
+        except Exception:
+            QMessageBox.about(self, "Сообщение!", "Были введены не правильные данные")
+        else:
+            new_worker = worker.Worker(name, position, birthday, salary, experience, duration, date)
+            self.worker_list.append(new_worker)
+            self.parent.listWidget.addItem(str(new_worker))
+            QMessageBox.about(self, "Сообщение!", "Работник добавлен")
+
+    def closeEvent(self, event):
+        reply = QMessageBox.question(self, "Сообщение", "Вы уверены?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            event.accept()
+        else:
+            event.ignore()
+
+
+def main(main_company: company.Company):
+
     app = QtWidgets.QApplication(sys.argv)  # Новый экземпляр QApplication
-    window = MainController(worker_list, order_list, transport_list)  # Создаём объект класса ExampleApp
+    window = MainController(main_company.workerList, main_company.orderList, main_company.transportList,
+                            main_company.positionDict)  # Создаём объект класса ExampleApp
     window.show()  # Показываем окно
     sys.exit(app.exec_())
 
 
 if __name__ == "__main__":
-    main(None, None, None)
+    pass
