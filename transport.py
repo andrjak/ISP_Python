@@ -20,12 +20,6 @@ class TransportInfo:
         webbrowser.open_new("Стоимость {company} {model}".format(company=self.producer, model=self.name))
 
 
-item = TransportInfo("fsdfs","fsdfsdf", "gfgdfg")
-
-print()
-print(item.__dict__)
-
-
 class Transport:
     __doc__ = "Основной класс описывающий транспортное средство"
 
