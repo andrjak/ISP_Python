@@ -7,9 +7,9 @@ class TransportInfo:
     def __init__(self, name, producer, year):
         self.name = name  # Название модели
         self.producer = producer  # Фирма производитель
-        self.year = year  # Год выпуска
+        self.__year = year  # Год выпуска
 
-    def get_producer_info(self):  # Перейти на сайт фирмы
+    def __get_producer_info(self):  # Перейти на сайт фирмы
         webbrowser.open_new("https://www.{company}.by".format(company=self.producer))
 
     def get_model_info(self):  # Запрос по модели транспорта
@@ -18,6 +18,12 @@ class TransportInfo:
 
     def get_price_info(self):  # Запрос о цене транспортного средства
         webbrowser.open_new("Стоимость {company} {model}".format(company=self.producer, model=self.name))
+
+
+item = TransportInfo("fsdfs","fsdfsdf", "gfgdfg")
+
+print()
+print(item.__dict__)
 
 
 class Transport:
@@ -70,6 +76,7 @@ class Bus(Transport):  # Автобус
 
 
 if __name__ == "__main__":
-    x = Transport(TransportInfo("S8", "Audi", 2015))
-    x.info.get_producer_info()
-    x.info.get_model_info()
+   # x = Transport(TransportInfo("S8", "Audi", 2015))
+   # x.info.get_producer_info()
+   # x.info.get_model_info()
+   pass
