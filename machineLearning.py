@@ -44,7 +44,7 @@ def openai():
     D = train(data)
     text_clf = Pipeline([("tfidf", TfidfVectorizer()), ("clf", SGDClassifier(loss="hinge")),])
     text_clf.fit(D["train"]["x"], D["train"]["y"])
-    predicted = text_clf.predict(D["train"]["x"])
+    # predicted = text_clf.predict(D["train"]["x"])
     return text_clf
 
 

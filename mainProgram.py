@@ -1,8 +1,5 @@
 import company
-import transport
-import viewController
-import worker
-import order
+from Controller import viewController
 import datetime
 import logging
 from worker import Worker
