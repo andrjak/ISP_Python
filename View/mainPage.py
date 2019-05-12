@@ -16,6 +16,13 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         MainWindow.setFont(font)
+        MainWindow.setStyleSheet("QMainWindow { background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 178, 102, 255), stop:0.55 rgba(235, 148, 61, 255), stop:0.98 rgba(0, 0, 0, 255), stop:1 rgba(0, 0, 0, 0)); font: 10pt \"MS Shell Dlg 2\"; } \n"
+"QLabel {color: rgb(85, 41, 9); }\n"
+"QPushButton { background-color: rgb(255, 228, 144); color: rgb(85, 41, 9); }\n"
+"QComboBox { background-color: rgb(255, 228, 144); color: rgb(85, 41, 9); }\n"
+"QLineEdit { background-color: rgb(255, 245, 187); color: rgb(85, 41, 9); }\n"
+"QListWidget { background-color: rgb(255, 245, 187); color: rgb(85, 41, 9); }\n"
+"")
         MainWindow.setAnimated(True)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
