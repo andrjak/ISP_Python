@@ -1,5 +1,4 @@
-import transport
-import worker
+from Model import transport, worker
 import datetime
 
 

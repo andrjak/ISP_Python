@@ -3,7 +3,7 @@ import datetime
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 
-import worker
+from Model import worker
 from View import newWorker
 
 

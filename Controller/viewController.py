@@ -1,33 +1,27 @@
-import datetime
-
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QMessageBox, QDesktopWidget
+from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import QCoreApplication
 from PyQt5 import QtWidgets
 
-from View import mainPage, helpPage
-from View import orderPage
-from View import transportPage
-from View import workerPage
-from View import newWorker
 
-from Controller.helpController import HelpController
+from View import mainPage
+
 from Controller.workerController import WorkerController
+from Controller.orderController import OrderController
+from Controller.transportController import TransportController
 
-import company
-import worker
-import order
-import transport
+from Model import company, DBcontroler
 import sys
 
 
 class MainController(QtWidgets.QMainWindow, mainPage.Ui_MainWindow):
-    def __init__(self, worker_list, order_list, transport_list, position_dict):
+    def __init__(self, main_company):
         super().__init__()
-        self.worker_list = worker_list
-        self.order_list = order_list
-        self.transport_list = transport_list
-        self.position_dict = position_dict
+        self.worker_list = main_company.workerList
+        self.order_list = main_company.orderList
+        self.transport_list = main_company.transportList
+        self.position_dict = main_company.positionDict
+        self.main_company = main_company
         self.setupUi(self)
         self.options()
         self.window = None
@@ -37,15 +31,16 @@ class MainController(QtWidgets.QMainWindow, mainPage.Ui_MainWindow):
         self.pushButton.setToolTip("Зайдите для управления сотрудниками предприятия")
         self.pushButton_2.setToolTip("Зайдите для управления заказами предприятия")
         self.pushButton_3.setToolTip("Зайдите для управления транспортом предприятия")
-        self.pushButton_4.setToolTip("Зайдите для просмотра информации о предприятии")
-        self.pushButton_5.setToolTip("Основные настройки приложения")
+        self.pushButton_4.setToolTip("Нажмите чтобы сохранить все внесённые изменения")
         self.pushButton.clicked.connect(self.worker_open)
         self.pushButton_2.clicked.connect(self.order_open)
         self.pushButton_3.clicked.connect(self.transport_open)
-        # self.pushButton_4.clicked.connect(self)
-        # self.pushButton_5.clicked.connect(self)
+        self.pushButton_4.clicked.connect(self.save_data)
         self.pushButton_6.clicked.connect(QCoreApplication.instance().quit)
         # self.showFullScreen()
+
+    def save_data(self):
+        DBcontroler.set_data(self.main_company)
 
     def worker_open(self):
         self.window = WorkerController(self, self.worker_list, self.position_dict)
@@ -70,39 +65,10 @@ class MainController(QtWidgets.QMainWindow, mainPage.Ui_MainWindow):
             event.ignore()
 
 
-class TransportController(QtWidgets.QMainWindow, transportPage.Ui_MainWindow):
-    def __init__(self, parent=None, transport_list: list = None):
-        super(TransportController, self).__init__(parent)
-        self.setupUi(self)
-        self.transport_list = transport_list
-
-    def closeEvent(self, event):
-        reply = QMessageBox.question(self, "Сообщение", "Вы уверены?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-        if reply == QMessageBox.Yes:
-            event.accept()
-        else:
-            event.ignore()
-
-
-class OrderController(QtWidgets.QMainWindow, orderPage.Ui_MainWindow):
-    def __init__(self, parent=None, order_list: list = None):
-        super(OrderController, self).__init__(parent)
-        self.setupUi(self)
-        self.order_list = order_list
-
-    def closeEvent(self, event):
-        reply = QMessageBox.question(self, "Сообщение", "Вы уверены?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-        if reply == QMessageBox.Yes:
-            event.accept()
-        else:
-            event.ignore()
-
-
 def main(main_company: company.Company):
 
     app = QtWidgets.QApplication(sys.argv)  # Новый экземпляр QApplication
-    window = MainController(main_company.workerList, main_company.orderList, main_company.transportList,
-                            main_company.positionDict)  # Создаём объект класса ExampleApp
+    window = MainController(main_company)  # Создаём объект класса ExampleApp
     window.show()  # Показываем окно
     sys.exit(app.exec_())
 

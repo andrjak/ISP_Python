@@ -1,7 +1,6 @@
 import datetime
 
 from PyQt5 import QtWidgets
-from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMessageBox
 
 from Controller.newWorkerController import NewWorkerController
@@ -23,10 +22,6 @@ class WorkerController(QtWidgets.QMainWindow, workerPage.Ui_MainWindow):
     def options(self):
         self.pushButton.clicked.connect(self.add_worker)
         self.pushButton_2.clicked.connect(self.del_worker)
-        # self.pushButton_3
-        # self.pushButton_4.clicked.connect(self.view_position)
-        # self.pushButton_5
-        # self.pushButton_6.clicked.connect(self.del_position)
         self.pushButton_7.clicked.connect(self.view_worker)
         self.pushButton_8.clicked.connect(self.search)
         self.pushButton_9.clicked.connect(self.sort)
@@ -91,7 +86,6 @@ class WorkerController(QtWidgets.QMainWindow, workerPage.Ui_MainWindow):
                 counter += 1
 
     def search(self):
-        item = None
         item = self.lineEdit.text()
         if item is not None:
             self.listWidget.clear()

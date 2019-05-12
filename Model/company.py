@@ -1,6 +1,4 @@
-import transport
-import worker
-import order
+from Model import order, transport, worker
 
 
 class Company:

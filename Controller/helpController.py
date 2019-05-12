@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QMessageBox
 
 from View import helpPage
 
-import machineLearning
+from Model import machineLearning
 
 
 class HelpController(QtWidgets.QMainWindow, helpPage.Ui_MainWindow):
