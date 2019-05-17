@@ -1,4 +1,3 @@
-import sys
 import numpy as np
 import pickle  # Сереализация (рассол, соленье)
 import re
@@ -6,7 +5,6 @@ from Stemmer import Stemmer  # Получение правильной форм�
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import SGDClassifier
 from sklearn.pipeline import Pipeline
-from sklearn.metrics import accuracy_score
 
 
 def text_cleaner(text: str):
@@ -19,7 +17,7 @@ def text_cleaner(text: str):
 
 def get_data():  # Загружаем данные для обучения из файла
     data = {"text": [], "tag": []}
-    for line in open("data.txt"):
+    for line in open("data2.txt"):
         if not("#" in line):
             row = line.split("@")
             data["text"] += [row[0]]
@@ -49,16 +47,16 @@ def openai():
 
 
 def save(model):
-    pickle.dump(model, open("model.sav", "wb"))
+    pickle.dump(model, open("model2.sav", "wb"))
 
 
-def load():
-    return pickle.load(open("model.sav", "rb"))
+def load(file="model.sav"):
+    return pickle.load(open(file, "rb"))
 
 
 def main():
-    # text_clf = openai()  # Для обучения нейронки на наборе правильной информации
-    text_clf = load()  # Для продолжения работы с уже обученной нейронкой
+    text_clf = openai()  # Для обучения нейронки на наборе правильной информации
+    # text_clf = load()  # Для продолжения работы с уже обученной нейронкой
     qwe = list()
     qwe.append("вернутся назад")
     predicted = text_clf.predict(qwe)

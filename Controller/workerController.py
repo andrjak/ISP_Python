@@ -17,7 +17,6 @@ class WorkerController(QtWidgets.QMainWindow, workerPage.Ui_MainWindow):
         self.position_dict = position_dict
         self.options()
         self.window = None
-        self.flag = True
 
     def options(self):
         self.pushButton.clicked.connect(self.add_worker)
@@ -35,55 +34,48 @@ class WorkerController(QtWidgets.QMainWindow, workerPage.Ui_MainWindow):
         self.window.show()
 
     def add_worker(self):
-        if self.flag:
-            self.window = NewWorkerController(self, self.worker_list)
-            self.window.show()
+        self.window = NewWorkerController(self, self.worker_list)
+        self.window.show()
 
     def del_worker(self):
-        if self.flag:
-            list_items = self.listWidget.selectedItems()
-            if not list_items:
-                return
-            for item in list_items:
-                index = self.listWidget.row(item)
-                self.listWidget.takeItem(index)
-                self.worker_list.remove(self.worker_list[index])
+        list_items = self.listWidget.selectedItems()
+        if not list_items:
+            return
+        for item in list_items:
+            index = self.listWidget.row(item)
+            self.listWidget.takeItem(index)
+            self.worker_list.remove(self.worker_list[index])
 
     def view_worker(self):
-            self.flag = True
             self.listWidget.clear()
             for i in self.worker_list:
                 self.listWidget.addItem(str(i))
 
     def change_position(self):
-        if not self.flag:
-            pass
+        pass
 
     def view_position(self):
-        self.flag = False
         self.listWidget.clear()
         for key, value in self.position_dict:
             self.listWidget.addItem("{}: {}".format(str(key), str(value)))
 
     def add_position(self):
-        if not self.flag:
-            pass
+        pass
 
     def del_position(self):
-        if not self.flag:
-            dict_items = self.listWidget.selectedItems()
-            del_array = []
-            if not dict_items:
-                return
-            for item in dict_items:
-                index = self.listWidget.row(item)
-                self.listWidget.takeItem(index)
-                dict_items.append(index)
-            counter = 0
-            for key, value in self.position_dict:
-                if counter in del_array:
-                    del del_array[key]
-                counter += 1
+        dict_items = self.listWidget.selectedItems()
+        del_array = []
+        if not dict_items:
+            return
+        for item in dict_items:
+            index = self.listWidget.row(item)
+            self.listWidget.takeItem(index)
+            dict_items.append(index)
+        counter = 0
+        for key, value in self.position_dict:
+            if counter in del_array:
+                del del_array[key]
+            counter += 1
 
     def search(self):
         item = self.lineEdit.text()
@@ -94,16 +86,15 @@ class WorkerController(QtWidgets.QMainWindow, workerPage.Ui_MainWindow):
                     self.listWidget.addItem(str(i))
 
     def sort(self):
-        if self.flag:
-            self.listWidget.clear()
-            if self.comboBox.currentText() == "Сортировать по имени":
-                self.worker_list.sort(key=lambda this_worker: this_worker.name)
-            elif self.comboBox.currentText() == "Сортировать по дате рождения":
-                self.worker_list.sort(key=lambda this_worker: this_worker.birthday)
-            else:
-                self.worker_list.sort(key=lambda this_worker: this_worker.salary)
-            for i in self.worker_list:
-                self.listWidget.addItem(str(i))
+        self.listWidget.clear()
+        if self.comboBox.currentText() == "Сортировать по имени":
+            self.worker_list.sort(key=lambda this_worker: this_worker.name)
+        elif self.comboBox.currentText() == "Сортировать по дате рождения":
+            self.worker_list.sort(key=lambda this_worker: this_worker.birthday)
+        else:
+            self.worker_list.sort(key=lambda this_worker: this_worker.salary)
+        for i in self.worker_list:
+            self.listWidget.addItem(str(i))
 
     def birthday_sort(self):
         self.listWidget.clear()

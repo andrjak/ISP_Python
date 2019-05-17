@@ -7,11 +7,11 @@ from Model import machineLearning
 
 
 class HelpController(QtWidgets.QMainWindow, helpPage.Ui_MainWindow):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, file="model.sav"):
         super(HelpController, self).__init__(parent)
         self.setupUi(self)
         self.pushButton.clicked.connect(self.click_on_help)
-        self.model = machineLearning.load()
+        self.model = machineLearning.load(file)
 
     def click_on_help(self):
         question = self.lineEdit.text()

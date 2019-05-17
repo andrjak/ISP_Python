@@ -2,6 +2,7 @@ import pymongo
 import datetime
 from Model import company
 from Model.worker import Worker
+from Model.transport import Transport, TransportInfo
 
 client = pymongo.MongoClient()
 db = client["mainDataBase"]
@@ -15,7 +16,8 @@ def get_data(this_company):
         date = datetime.datetime.strptime(i["date"], "%d.%m.%Y")
         worker_list.append(Worker(i["name"], i["position"], birthday, i["salary"],
                                   i["experience"], i["duration"], date))
-    this_company.start_init([1, 2, 3], worker_list, [1, 2, 3], [1, 2, 3], {"Программист": 2})
+    this_company.start_init([Transport(TransportInfo("S8", "Audi", 2015))],
+                            worker_list, [1, 2, 3], [1, 2, 3], {"Программист": 2})
 
 
 def set_data(this_company):
