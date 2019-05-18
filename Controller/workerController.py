@@ -25,6 +25,7 @@ class WorkerController(QtWidgets.QMainWindow, workerPage.Ui_MainWindow):
         self.pushButton_8.clicked.connect(self.search)
         self.pushButton_9.clicked.connect(self.sort)
         self.pushButton_10.clicked.connect(self.birthday_sort)
+        self.back.clicked.connect(self.close)
         self.Help.clicked.connect(self.open_help)
         for i in self.worker_list:
             self.listWidget.addItem(str(i))
@@ -101,6 +102,9 @@ class WorkerController(QtWidgets.QMainWindow, workerPage.Ui_MainWindow):
         for i in self.worker_list:
             if i.birthday.month == datetime.date.today().month:
                 self.listWidget.addItem(str(i))
+
+    def close(self):
+        self.destroy()
 
     def closeEvent(self, event):
         reply = QMessageBox.question(self, "Сообщение", "Вы уверены?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
